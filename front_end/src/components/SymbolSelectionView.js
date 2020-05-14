@@ -8,12 +8,7 @@ import {connect} from "react-redux";
 class SymbolSelectionView extends React.Component {
 
     createDropDownListModel(data) {
-        let list = []
-        for (let key in data) {
-            let oData = data[key];
-            list.push({id: oData.id, label: oData.label})
-        }
-        return list;
+        return data.map(oData=>{ return {id: oData.id, label: oData.symbol}})
     }
 
     handleClassificationDropDownOnBlur = (selectedItems) => {
