@@ -20,18 +20,17 @@ class SymbolSelectionView extends React.Component {
         let aDropDownListModel = this.createDropDownListModel(this.props.symbolList)
         return <MSSView
             key={"SYMBOLS"}
-            label={"Symbols"}
             childElements={aDropDownListModel}
             onBlur={this.handleClassificationDropDownOnBlur}
             isMultiple={true}
             allowClear={true}
-            selected={this.props.selectedSymbols || []}
-            selectAll={true}/>
+            selected={this.props.selectedSymbols || []}/>
     }
 
     render() {
         return (
             <div className={"symbolSelectionContainer"}>
+                <div className={"sectionLabel"}>Symbols</div>
                 <div className={"dropDownsContainer"}>
                     {this.getSymbolDropdownView()}
                 </div>

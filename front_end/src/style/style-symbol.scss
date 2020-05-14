@@ -4,33 +4,38 @@
     float: left;
     background: #ffffff;
 
-    .leftPanel {
-        width: 25%;
-        height: 100%;
+    .upperPanel {
+        width: 100%;
+        height: 13%;
         float: left;
-        border-right: 1px solid #eaeaea;
+        border-bottom: 1px solid #eaeaea;
 
         .symbolSelectionContainer {
             width: 100%;
-            height: 70%;
-            top: 10%;
-            position: relative;
+            height: 100%;
+
+            .sectionLabel {
+                font-weight: bold;
+                opacity: .8;
+                height: 30px;
+                padding-left: 15px;
+                line-height: 30px;
+                font-size: small;
+            }
 
             .dropDownsContainer {
-                height: 100%;
+                height: calc(100% - 30px);
                 width: 100%;
-                padding: 0 15px;
-
-                .symbolDropdown{
-                    height: 40%;
-                }
+                padding: 5px 15px 15px 15px;
+                overflow: auto;
             }
         }
     }
 
-    .rightPanel {
-        width: 75%;
-        height: 100%;
+    .lowerPanel {
+        width: 100%;
+        height: 87%;
+        overflow: auto;
         float: left;
         position: relative;
     }

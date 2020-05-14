@@ -2,7 +2,6 @@ import React from 'react';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
-import TabView from "../libraries/tabview/TabView";
 import SymbolSelectionView from "./SymbolSelectionView"
 
 import * as appActions from "../actions";
@@ -16,10 +15,10 @@ export class SymbolView extends React.Component {
     render() {
         return (
             <div className={"symbolScreen"}>
-                <div className={"leftPanel"}>
+                <div className={"upperPanel"}>
                     <SymbolSelectionView/>
                 </div>
-                <div className={"rightPanel"}>
+                <div className={"lowerPanel"}>
                     Right Panel Data
                 </div>
             </div>
