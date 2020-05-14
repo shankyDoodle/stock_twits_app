@@ -4,6 +4,8 @@ import {render} from 'react-dom'
 import "antd/dist/antd.css";
 
 import './style/style-index.scss'
+import './style/style-symbol.scss'
+
 import './style/style-tab.scss'
 
 import App from './components/App'
