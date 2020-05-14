@@ -13,7 +13,7 @@ export class SymbolView extends React.Component {
         this.props.dispatch(appActions.fetchSymbolListFromServer());
     }
 
-    getTabBody() {
+    render() {
         return (
             <div className={"symbolScreen"}>
                 <div className={"leftPanel"}>
@@ -23,15 +23,6 @@ export class SymbolView extends React.Component {
                     Right Panel Data
                 </div>
             </div>
-        )
-    }
-
-    render() {
-        return (
-            <TabView
-                label={"null"}
-                body={this.getTabBody()}
-            />
         );
     }
 }
