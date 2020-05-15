@@ -11,9 +11,16 @@ class SymbolSelectionView extends React.Component {
         return data.map(oData=>{ return {id: oData.id, label: oData.symbol}})
     }
 
-    handleClassificationDropDownOnBlur = (selectedItems) => {
-        console.log(selectedItems);
+    handleDropDownOnBlur = (selectedSymbols) => {
         // this.props.dispatch(appActions.handleClassificationCreateButtonCLickedServerCall(selectedItems));
+    }
+
+    handleDropDownOnChange=(selectedSymbols)=>{
+        this.props.dispatch(appActions.handleDropDownOnChange(selectedSymbols));
+    }
+
+    handleCreateNewSymbol=(newSymbol)=>{
+        this.props.dispatch(appActions.handleCreateNewSymbol(newSymbol));
     }
 
     getSymbolDropdownView() {
@@ -21,10 +28,12 @@ class SymbolSelectionView extends React.Component {
         return <MSSView
             key={"SYMBOLS"}
             childElements={aDropDownListModel}
-            onBlur={this.handleClassificationDropDownOnBlur}
+            onBlur={this.handleDropDownOnBlur}
+            onChange={this.handleDropDownOnChange}
+            onEnterPress={this.handleCreateNewSymbol}
             isMultiple={true}
             allowClear={true}
-            selected={this.props.selectedSymbols || []}/>
+            selected={this.props.selectedSymbols}/>
     }
 
     render() {

@@ -3,6 +3,7 @@ import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
 import SymbolSelectionView from "./SymbolSelectionView"
+import SymbolListView from "./SymbolListView"
 
 import * as appActions from "../actions";
 
@@ -19,7 +20,7 @@ export class SymbolView extends React.Component {
                     <SymbolSelectionView/>
                 </div>
                 <div className={"lowerPanel"}>
-                    Right Panel Data
+                    <SymbolListView />
                 </div>
             </div>
         );
