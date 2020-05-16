@@ -45,17 +45,36 @@ const _handleCreateNewSymbol = (state, newSymbol) => {
     return oRet
 }
 
+const _createOrUpdateCountMap=(oMap, selectedSymbols, messages)=>{
+    messages.forEach(message=>{
+        message.symbols.forEach(sym=>{
+            if(selectedSymbols.includes(sym.symbol)){
+                oMap[sym.symbol] = oMap[sym.symbol] ? oMap[sym.symbol]+1 : 1;
+            }
+        });
+    })
+}
+
 const _successHandleSymbolDropDownOnBlur = (state, messagesData) =>{
     let messages = messagesData.message;
     let since = messagesData.cursor.since;
     let max = messagesData.cursor.max;
     let isMore = messagesData.cursor.more;
+
+    let selectedSymbols = state.selectedSymbols
+    let countMap = {}
+    selectedSymbols.forEach(sym=>{
+        countMap[sym] = 0
+    })
+    _createOrUpdateCountMap(countMap, selectedSymbols, messages)
+
     return {
         ...state,
         messages,
         since,
         max,
-        isMore
+        isMore,
+        countMap
     }
 }
 

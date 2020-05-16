@@ -1,7 +1,8 @@
 import React from "react";
 import {connect} from "react-redux";
 import PropTypes from 'prop-types';
-import { Select } from 'antd';
+import './style-mss.scss'
+import { Select, Tag} from 'antd';
 const { Option } = Select;
 
 
@@ -43,13 +44,23 @@ export class MSSView extends React.Component {
         const children = [];
         if(this.props.selectAll){
             let bIsDisabled = this.props.selected.length === this.props.childElements.length
-            children.push(<Option disabled={bIsDisabled} key={"selectAll"}>{"Select All"}</Option>);
+            children.push(<Option disabled={bIsDisabled} key={"selectAll"} value={"selectAll"}>{"Select All"}</Option>);
         }
 
         for (let item of this.props.childElements) {
-            children.push(<Option key={item.id}>{item.label}</Option>);
+            children.push(<Option key={item.id} value={item.id}>{item.label}</Option>);
         }
         return children;
+    }
+
+    tagRender=(props)=> {
+        const { label, value, closable, onClose } = props;
+        return (
+            <Tag closable={closable} onClose={onClose} style={{ marginRight: 3 }}>
+                <div className={"tagCount"}>{this.props.tagCount[value]}</div>
+                <div className={"tagLabel"}>{label}</div>
+            </Tag>
+        );
     }
 
     render() {
@@ -66,6 +77,7 @@ export class MSSView extends React.Component {
                     onBlur={this.handleBlur}
                     disabled={this.props.disabled}
                     onInputKeyDown={this.handleKeyDown}
+                    tagRender={this.props.tagCount ? this.tagRender : null}
                 >
                     {this.getChildren()}
                 </Select>
@@ -92,6 +104,7 @@ MSSView.propTypes={
     allowClear: PropTypes.bool,
     selectAll: PropTypes.bool,
     disabled: PropTypes.bool,
+    tagCount: PropTypes.object
 }
 
 function mapStateToProps(state) {

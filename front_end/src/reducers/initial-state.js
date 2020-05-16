@@ -5,13 +5,14 @@ let initialState = {
     messages:[],
     since:null,
     max:null,
-    isMore:false
+    isMore:false,
+    countMap:null
 }
 
 export const defaultState = initialState;
 
 export const getInitialState = function () {
     return {
-        ...initialState,
+        ...initialState
     }
 }

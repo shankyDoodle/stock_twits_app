@@ -6,7 +6,7 @@
 
     .upperPanel {
         width: 100%;
-        height: 13%;
+        height: 16%;
         float: left;
         border-bottom: 1px solid #eaeaea;
 
@@ -34,7 +34,7 @@
 
     .lowerPanel {
         width: 100%;
-        height: 87%;
+        height: 84%;
         float: left;
         position: relative;
 
@@ -58,9 +58,4 @@
             }
         }
     }
-}
-
-
-.ant-select-selector{
-    min-height: 60px !important;
 }

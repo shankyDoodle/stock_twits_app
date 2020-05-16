@@ -33,6 +33,7 @@ class SymbolSelectionView extends React.Component {
             onEnterPress={this.handleCreateNewSymbol}
             isMultiple={true}
             allowClear={true}
+            tagCount={this.props.countMap}
             selected={this.props.selectedSymbols}/>
     }
 
