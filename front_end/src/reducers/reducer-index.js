@@ -1,7 +1,6 @@
 import {getInitialState, defaultState} from "./initial-state";
 
 import * as appActions from '../actions'
-import {HANDLE_SYMBOL_DROP_DOWN_ON_CHANGE} from "../actions";
 
 function resetToInitialState(oRet) {
     Object.assign(oRet, {...defaultState});
@@ -46,6 +45,20 @@ const _handleCreateNewSymbol = (state, newSymbol) => {
     return oRet
 }
 
+const _successHandleSymbolDropDownOnBlur = (state, messagesData) =>{
+    let messages = messagesData.message;
+    let since = messagesData.cursor.since;
+    let max = messagesData.cursor.max;
+    let isMore = messagesData.cursor.more;
+    return {
+        ...state,
+        messages,
+        since,
+        max,
+        isMore
+    }
+}
+
 export default (state = getInitialState(), action) => {
     switch (action.type) {
         case appActions.SUCCESS_FETCH_SYMBOL_LIST:
@@ -56,6 +69,9 @@ export default (state = getInitialState(), action) => {
 
         case appActions.HANDLE_NEW_SYMBOL_CREATE:
             return _handleCreateNewSymbol(state, action.newSymbol)
+
+        case appActions.SUCCESS_HANDLE_SYMBOL_DROP_DOWN_ON_BLUR:
+            return _successHandleSymbolDropDownOnBlur(state, action.messagesData)
 
         default:
             return state

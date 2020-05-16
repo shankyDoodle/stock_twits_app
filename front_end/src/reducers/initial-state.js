@@ -1,7 +1,11 @@
 
 let initialState = {
     symbolList:[],
-    selectedSymbols:[]
+    selectedSymbols:[],
+    messages:[],
+    since:null,
+    max:null,
+    isMore:false
 }
 
 export const defaultState = initialState;

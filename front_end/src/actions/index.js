@@ -23,9 +23,9 @@ export const handleCreateNewSymbol=(newSymbol)=>({
     newSymbol: newSymbol
 })
 
-export const successHandleSymbolDropDownOnBlur = (selectedItems) => ({
+export const successHandleSymbolDropDownOnBlur = (messagesData) => ({
     type: SUCCESS_HANDLE_SYMBOL_DROP_DOWN_ON_BLUR,
-    selectedItems: selectedItems
+    messagesData: messagesData
 })
 
 const successFetchSymbolListFromServer = (symbolList) => ({
@@ -43,9 +43,9 @@ export function fetchSymbolListFromServer() {
     };
 }
 
-export function handleSymbolDropDownOnBlur(selectedCustomerIds) {
+export function handleDropDownOnBlur(selectedCustomerIds) {
     return dispatch => {
-        return axios.post(URLMappings.GetSelectedSymbolData, {selectedSymbolIds: selectedCustomerIds})
+        return axios.get(URLMappings.GetSelectedSymbolData, {params:{symbols: selectedCustomerIds}})
             .then(res => {
                 dispatch(successHandleSymbolDropDownOnBlur(res.data));
             }).catch(e => dispatch(handleServerFailure(e)));

@@ -12,7 +12,7 @@ class SymbolSelectionView extends React.Component {
     }
 
     handleDropDownOnBlur = (selectedSymbols) => {
-        // this.props.dispatch(appActions.handleClassificationCreateButtonCLickedServerCall(selectedItems));
+        this.props.dispatch(appActions.handleDropDownOnBlur(selectedSymbols));
     }
 
     handleDropDownOnChange=(selectedSymbols)=>{
