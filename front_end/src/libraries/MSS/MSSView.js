@@ -28,7 +28,7 @@ export class MSSView extends React.Component {
     }
 
     handleBlur=()=>{
-        if(this.props.onBlur){
+        if(this.props.onBlur && this.selected.length){
             this.props.onBlur(this.selected);
         }
     }
@@ -48,7 +48,10 @@ export class MSSView extends React.Component {
         }
 
         for (let item of this.props.childElements) {
-            children.push(<Option key={item.id} value={item.id}>{item.label}</Option>);
+            let bIsDisabled = this.props.lengthLimit &&
+                this.props.selected.length >= this.props.lengthLimit &&
+                !this.selected.includes(item.id)
+            children.push(<Option disabled={bIsDisabled} key={item.id} value={item.id}>{item.label}</Option>);
         }
         return children;
     }
@@ -104,7 +107,8 @@ MSSView.propTypes={
     allowClear: PropTypes.bool,
     selectAll: PropTypes.bool,
     disabled: PropTypes.bool,
-    tagCount: PropTypes.object
+    tagCount: PropTypes.object,
+    lengthLimit: PropTypes.number
 }
 
 function mapStateToProps(state) {
