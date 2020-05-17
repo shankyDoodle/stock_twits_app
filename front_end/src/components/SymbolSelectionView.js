@@ -23,6 +23,10 @@ class SymbolSelectionView extends React.Component {
         this.props.dispatch(appActions.handleCreateNewSymbol(newSymbol));
     }
 
+    handleSymbolRemoved=(selectedSymbols)=>{
+        this.props.dispatch(appActions.handleSymbolRemoved(selectedSymbols));
+    }
+
     getSymbolDropdownView() {
         let aDropDownListModel = this.createDropDownListModel(this.props.symbolList)
         return <MSSView
@@ -31,6 +35,7 @@ class SymbolSelectionView extends React.Component {
             onBlur={this.handleDropDownOnBlur}
             onChange={this.handleDropDownOnChange}
             onEnterPress={this.handleCreateNewSymbol}
+            onChangeBlur={this.handleSymbolRemoved}
             isMultiple={true}
             allowClear={true}
             tagCount={this.props.countMap}

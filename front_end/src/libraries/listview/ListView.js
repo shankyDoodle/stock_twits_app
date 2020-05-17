@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from "react-redux";
 import PropTypes from 'prop-types'
-import { Tooltip, Button, Divider} from 'antd';
+import { Tooltip, Button, Divider, Empty} from 'antd';
 
 import './style-list-view.scss'
 
@@ -43,11 +43,24 @@ export class ListView extends React.Component {
         )
     }
 
+    getInnerView(){
+        if(!this.props.items || !this.props.items.length){
+            return <div className={"empty"}>
+                <Empty/>
+            </div>
+        }
+
+        return <>
+            {this.getListNodes()}
+            {this.getLoadMoreView()}
+        </>
+
+    }
+
     render() {
         return (
             <div className={"listViewContainer"}>
-                {this.getListNodes()}
-                {this.getLoadMoreView()}
+                {this.getInnerView()}
             </div>
         )
     }

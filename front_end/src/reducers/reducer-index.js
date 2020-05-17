@@ -56,7 +56,7 @@ const _createOrUpdateCountMap=(oMap, selectedSymbols, messages)=>{
 }
 
 const _successHandleSymbolDropDownOnBlur = (state, messagesData) =>{
-    let messages = messagesData.message;
+    let messages = messagesData.message || [];
     let since = messagesData.cursor.since;
     let max = messagesData.cursor.max;
     let isMore = messagesData.cursor.more;

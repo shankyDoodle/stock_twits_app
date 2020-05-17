@@ -44,10 +44,28 @@ export function fetchSymbolListFromServer() {
 }
 
 export function handleDropDownOnBlur(selectedCustomerIds) {
-    return dispatch => {
-        return axios.get(URLMappings.GetSelectedSymbolData, {params:{symbols: selectedCustomerIds}})
-            .then(res => {
-                dispatch(successHandleSymbolDropDownOnBlur(res.data));
-            }).catch(e => dispatch(handleServerFailure(e)));
-    };
+    if(!selectedCustomerIds.length){
+        return successHandleSymbolDropDownOnBlur({message:[], cursor:{}})
+    }else{
+        return dispatch => {
+            return axios.get(URLMappings.GetSelectedSymbolData, {params:{symbols: selectedCustomerIds}})
+                .then(res => {
+                    dispatch(successHandleSymbolDropDownOnBlur(res.data));
+                }).catch(e => dispatch(handleServerFailure(e)));
+        };
+    }
+}
+
+export function handleSymbolRemoved(selectedCustomerIds) {
+    if(!selectedCustomerIds.length){
+        return successHandleSymbolDropDownOnBlur({message:[], cursor:{}})
+    }else{
+        return dispatch => {
+            return axios.get(URLMappings.GetSelectedSymbolData, {params:{symbols: selectedCustomerIds}})
+                .then(res => {
+                    dispatch(handleDropDownOnChange(selectedCustomerIds));
+                    dispatch(successHandleSymbolDropDownOnBlur(res.data));
+                }).catch(e => dispatch(handleServerFailure(e)));
+        };
+    }
 }

@@ -14,21 +14,32 @@ export class MSSView extends React.Component {
         this.customKey = ""
     }
 
+    checkIfDropDownHidden(){
+        let oDOM = document.getElementsByClassName("ant-select-dropdown")[0]
+        return oDOM ? oDOM.classList.contains("ant-select-dropdown-hidden") : false;
+    }
+
     handleChange=(values)=>{
         this.selected = values
+
+        if(this.checkIfDropDownHidden() && this.props.onChangeBlur){
+            this.props.onChangeBlur(this.selected)
+            return
+        }
+
         if(this.props.selectAll && values.includes("selectAll")){
             this.selected = this.props.childElements.map(item=>item.id);
             this.customKey = Math.random()
             this.handleBlur();
-
         }
+
         if (this.props.onChange) {
             this.props.onChange(this.selected);
         }
     }
 
     handleBlur=()=>{
-        if(this.props.onBlur && this.selected.length){
+        if(this.props.onBlur){
             this.props.onBlur(this.selected);
         }
     }
@@ -60,7 +71,7 @@ export class MSSView extends React.Component {
         const { label, value, closable, onClose } = props;
         return (
             <Tag closable={closable} onClose={onClose} style={{ marginRight: 3 }}>
-                <div className={"tagCount"}>{this.props.tagCount[value]}</div>
+                {this.props.tagCount[value] !== undefined ? <div className={"tagCount"}>{this.props.tagCount[value]}</div> : null}
                 <div className={"tagLabel"}>{label}</div>
             </Tag>
         );
@@ -95,6 +106,7 @@ MSSView.propTypes={
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onEnterPress: PropTypes.func,
+    onChangeBlur: PropTypes.func,
     childElements: PropTypes.arrayOf(PropTypes.shape({
         id:PropTypes.oneOfType([
             PropTypes.string,
@@ -113,12 +125,6 @@ MSSView.propTypes={
 
 function mapStateToProps(state) {
     return state;
-}
-
-function mapDispatchToProps(dispatch) {
-    // let appActions = bindActionCreators({ homeButtonClicked: myActions.handleScreenChanged });
-    // return { ...appActions, dispatch };
-    return {}
 }
 
 const ConnectedView = connect(mapStateToProps, null)(MSSView);
