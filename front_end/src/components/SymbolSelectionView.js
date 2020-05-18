@@ -7,6 +7,22 @@ import {connect} from "react-redux";
 
 class SymbolSelectionView extends React.Component {
 
+    componentDidMount() {
+        setInterval(this.getData, 5000); // runs every 5 seconds.
+    }
+
+    checkIfDropDownHidden(){
+        let oDOM = document.getElementsByClassName("ant-select-dropdown")[0]
+        return oDOM ? oDOM.classList.contains("ant-select-dropdown-hidden") : false;
+    }
+
+    getData=()=>{
+        if(!this.checkIfDropDownHidden()) return;
+
+        let selectedSymbols = this.props.selectedSymbols
+        this.props.dispatch(appActions.handleAutoReload(selectedSymbols));
+    }
+
     createDropDownListModel(data) {
         return data.map(oData=>{ return {id: oData.id, label: oData.symbol}})
     }
@@ -37,7 +53,6 @@ class SymbolSelectionView extends React.Component {
             onEnterPress={this.handleCreateNewSymbol}
             onChangeBlur={this.handleSymbolRemoved}
             isMultiple={true}
-            allowClear={true}
             tagCount={this.props.countMap}
             lengthLimit={10}
             selected={this.props.selectedSymbols}/>

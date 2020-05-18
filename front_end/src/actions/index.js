@@ -45,11 +45,25 @@ export function fetchSymbolListFromServer() {
 
 export function handleDropDownOnBlur(selectedCustomerIds) {
     if(!selectedCustomerIds.length){
-        return successHandleSymbolDropDownOnBlur({message:[], cursor:{}})
+        return successHandleSymbolDropDownOnBlur({message:[], cursor:{}, emptyLoad:true})
     }else{
         return dispatch => {
             return axios.get(URLMappings.GetSelectedSymbolData, {params:{symbols: selectedCustomerIds}})
                 .then(res => {
+                    dispatch(successHandleSymbolDropDownOnBlur(res.data));
+                }).catch(e => dispatch(handleServerFailure(e)));
+        };
+    }
+}
+
+export function handleAutoReload(selectedCustomerIds) {
+    if(!selectedCustomerIds.length){
+        return successHandleSymbolDropDownOnBlur({message:[], cursor:{}, emptyLoad:true})
+    }else{
+        return dispatch => {
+            return axios.get(URLMappings.GetSelectedSymbolData, {params:{symbols: selectedCustomerIds}})
+                .then(res => {
+                    res.data.selectedIdsSentToServer = selectedCustomerIds
                     dispatch(successHandleSymbolDropDownOnBlur(res.data));
                 }).catch(e => dispatch(handleServerFailure(e)));
         };

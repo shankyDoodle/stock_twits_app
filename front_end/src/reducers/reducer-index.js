@@ -1,6 +1,7 @@
 import {getInitialState, defaultState} from "./initial-state";
 
 import * as appActions from '../actions'
+import ShowMessage from "../libraries/message/Message";
 
 function resetToInitialState(oRet) {
     Object.assign(oRet, {...defaultState});
@@ -55,11 +56,33 @@ const _createOrUpdateCountMap=(oMap, selectedSymbols, messages)=>{
     })
 }
 
+const _arraysEqual =(a, b)=> {
+    if (a === b) return true;
+    if (a == null || b == null) return false;
+    if (a.length !== b.length) return false;
+
+    let a2 = [...a].sort()
+    let b2 = [...b].sort()
+    for (let i = 0; i < a.length; ++i) {
+        if (a2[i] !== b2[i]) return false;
+    }
+    return true;
+}
+
 const _successHandleSymbolDropDownOnBlur = (state, messagesData) =>{
     let messages = messagesData.message || [];
     let since = messagesData.cursor.since;
     let max = messagesData.cursor.max;
     let isMore = messagesData.cursor.more;
+
+    //no change in data
+    if(
+        state.since === since &&
+        state.max === state.max &&
+        _arraysEqual(state.selectedSymbols, messagesData.selectedIdsSentToServer)
+    ){
+        return {...state}
+    }
 
     let selectedSymbols = state.selectedSymbols
     let countMap = {}
@@ -68,6 +91,9 @@ const _successHandleSymbolDropDownOnBlur = (state, messagesData) =>{
     })
     _createOrUpdateCountMap(countMap, selectedSymbols, messages)
 
+    if(!messagesData.emptyLoad){
+        ShowMessage("List updated successfully")
+    }
     return {
         ...state,
         messages,
