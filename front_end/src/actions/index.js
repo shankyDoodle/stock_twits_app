@@ -77,7 +77,7 @@ export function handleAutoReload(selectedCustomerIds) {
 
 export function handleSymbolRemoved(selectedCustomerIds) {
     if(!selectedCustomerIds.length){
-        return successHandleSymbolDropDownOnBlur({message:[], cursor:{}})
+        return successHandleSymbolDropDownOnBlur({message:[], cursor:{}, nothingSelected:true})
     }else{
         return dispatch => {
             return axios.get(URLMappings.GetSelectedSymbolData, {params:{symbols: selectedCustomerIds}})

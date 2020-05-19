@@ -60,6 +60,7 @@ class SymbolSelectionView extends React.Component {
             isMultiple={true}
             tagCount={this.props.countMap}
             lengthLimit={10}
+            allowClear={true}
             selected={this.props.selectedSymbols}/>
     }
 

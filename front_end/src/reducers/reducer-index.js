@@ -80,7 +80,7 @@ const _successHandleSymbolDropDownOnBlur = (state, messagesData) =>{
         return {...state}
     }
 
-    let selectedSymbols = state.selectedSymbols
+    let selectedSymbols = messagesData.nothingSelected ? [] : state.selectedSymbols;
     let countMap = {}
     selectedSymbols.forEach(sym=>{
         countMap[sym] = 0
@@ -97,7 +97,8 @@ const _successHandleSymbolDropDownOnBlur = (state, messagesData) =>{
         max,
         isMore,
         countMap,
-        isLoading:false
+        isLoading:false,
+        selectedSymbols
     }
 }
 
