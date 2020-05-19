@@ -28,6 +28,7 @@ class SymbolSelectionView extends React.Component {
     }
 
     handleDropDownOnBlur = (selectedSymbols) => {
+        this.props.dispatch(appActions.setLoadingTruthy());
         this.props.dispatch(appActions.handleDropDownOnBlur(selectedSymbols));
     }
 
@@ -37,11 +38,13 @@ class SymbolSelectionView extends React.Component {
 
     handleCreateNewSymbol=(newSymbol)=>{
         let selectedSymbols = [...this.props.selectedSymbols, newSymbol]
+        this.props.dispatch(appActions.setLoadingTruthy());
         this.props.dispatch(appActions.handleCreateNewSymbol(newSymbol));
         this.props.dispatch(appActions.handleDropDownOnBlur(selectedSymbols));
     }
 
     handleSymbolRemoved=(selectedSymbols)=>{
+        this.props.dispatch(appActions.setLoadingTruthy());
         this.props.dispatch(appActions.handleSymbolRemoved(selectedSymbols));
     }
 

@@ -3,6 +3,7 @@ import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
 import ListView from "../libraries/listview/ListView";
+import {SpinView} from "../libraries/spinner/SpinView";
 
 class SymbolListView extends React.Component {
 
@@ -49,7 +50,9 @@ class SymbolListView extends React.Component {
             <div className={"symbolListContainer"}>
                 <div className={"sectionLabel"}>Messages</div>
                 <div className={"listContainer"}>
-                    {this.getSymbolListView()}
+                    <SpinView
+                        spinning={this.props.isLoading}
+                        body={this.getSymbolListView()}/>
                 </div>
             </div>
         );

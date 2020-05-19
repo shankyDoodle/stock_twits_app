@@ -4,6 +4,7 @@ import axios from 'axios'
 
 export const HANDLE_SYMBOL_DROP_DOWN_ON_CHANGE = 'HANDLE_SYMBOL_DROP_DOWN_ON_CHANGE';
 export const HANDLE_NEW_SYMBOL_CREATE = 'HANDLE_NEW_SYMBOL_CREATE';
+export const SET_LOADING_TRUTHY = 'SET_LOADING_TRUTHY';
 export const SUCCESS_HANDLE_SYMBOL_DROP_DOWN_ON_BLUR = 'SUCCESS_HANDLE_SYMBOL_DROP_DOWN_ON_BLUR';
 export const SUCCESS_FETCH_SYMBOL_LIST = 'SUCCESS_FETCH_SYMBOL_LIST';
 
@@ -21,6 +22,10 @@ export const handleDropDownOnChange=(selectedSymbols)=>({
 export const handleCreateNewSymbol=(newSymbol)=>({
     type: HANDLE_NEW_SYMBOL_CREATE,
     newSymbol: newSymbol
+})
+
+export const setLoadingTruthy=()=>({
+    type: SET_LOADING_TRUTHY
 })
 
 export const successHandleSymbolDropDownOnBlur = (messagesData) => ({

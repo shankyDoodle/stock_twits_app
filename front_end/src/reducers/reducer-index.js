@@ -96,7 +96,15 @@ const _successHandleSymbolDropDownOnBlur = (state, messagesData) =>{
         since,
         max,
         isMore,
-        countMap
+        countMap,
+        isLoading:false
+    }
+}
+
+const _setLoadingTruthy = (state) => {
+    return{
+        ...state,
+        isLoading:true
     }
 }
 
@@ -113,6 +121,9 @@ export default (state = getInitialState(), action) => {
 
         case appActions.SUCCESS_HANDLE_SYMBOL_DROP_DOWN_ON_BLUR:
             return _successHandleSymbolDropDownOnBlur(state, action.messagesData)
+
+        case appActions.SET_LOADING_TRUTHY:
+            return _setLoadingTruthy(state)
 
         default:
             return state

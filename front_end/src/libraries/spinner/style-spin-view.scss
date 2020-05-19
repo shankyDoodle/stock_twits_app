@@ -1,0 +1,15 @@
+.ant-spin-nested-loading{
+    height: 100%;
+
+    .ant-spin-spinning{
+        position: absolute !important;
+        left: 50% !important;
+        top: 50% !important;
+        width: 100% !important;
+        transform: translate(-50%, -50%);
+    }
+
+    .ant-spin-container{
+        height: 100%;
+    }
+}

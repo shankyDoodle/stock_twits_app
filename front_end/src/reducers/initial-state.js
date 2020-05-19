@@ -6,6 +6,7 @@ let initialState = {
     since:null,
     max:null,
     isMore:false,
+    isLoading:false,
     countMap:null
 }
 
