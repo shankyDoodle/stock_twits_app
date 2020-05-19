@@ -2,7 +2,6 @@ import React from 'react';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
-import * as appActions from "../actions";
 import ListView from "../libraries/listview/ListView";
 
 class SymbolListView extends React.Component {

@@ -1,11 +1,7 @@
-import {getInitialState, defaultState} from "./initial-state";
+import {getInitialState} from "./initial-state";
 
 import * as appActions from '../actions'
 import ShowMessage from "../libraries/message/Message";
-
-function resetToInitialState(oRet) {
-    Object.assign(oRet, {...defaultState});
-}
 
 const _successFetchSymbolListFromServer =(state, symbolList)=>{
     return {
@@ -78,7 +74,7 @@ const _successHandleSymbolDropDownOnBlur = (state, messagesData) =>{
     //no change in data
     if(
         state.since === since &&
-        state.max === state.max &&
+        state.max === max &&
         _arraysEqual(state.selectedSymbols, messagesData.selectedIdsSentToServer)
     ){
         return {...state}

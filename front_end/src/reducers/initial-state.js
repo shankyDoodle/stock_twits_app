@@ -9,7 +9,7 @@ let initialState = {
     countMap:null
 }
 
-export const defaultState = initialState;
+// export const defaultState = initialState;
 
 export const getInitialState = function () {
     return {

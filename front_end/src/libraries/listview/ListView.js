@@ -6,9 +6,6 @@ import { Tooltip, Button, Divider, Empty} from 'antd';
 import './style-list-view.scss'
 
 export class ListView extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     handleLoadMoreClicked=()=>{
         this.props.loadMore()
