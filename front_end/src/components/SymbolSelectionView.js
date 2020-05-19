@@ -36,7 +36,9 @@ class SymbolSelectionView extends React.Component {
     }
 
     handleCreateNewSymbol=(newSymbol)=>{
+        let selectedSymbols = [...this.props.selectedSymbols, newSymbol]
         this.props.dispatch(appActions.handleCreateNewSymbol(newSymbol));
+        this.props.dispatch(appActions.handleDropDownOnBlur(selectedSymbols));
     }
 
     handleSymbolRemoved=(selectedSymbols)=>{
