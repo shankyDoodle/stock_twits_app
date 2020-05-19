@@ -17,8 +17,9 @@ const LoadData = require("./load-data");
 let myData = new LoadData();
 myData.prepareData()
 
+const ip = require("ip");
+const host = ip.address();
 const port = 9091
-
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -63,4 +64,4 @@ app.get('/symbolData', (req, res) => {
 });
 
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
+app.listen(port, () => console.log(`App listening at ${host}:${port}`))
