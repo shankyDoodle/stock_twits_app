@@ -17,7 +17,7 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "cookie-parser": "^1.4.5",
     "ip": "^1.1.5"
   }
